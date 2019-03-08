@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LikeYoutubeViewController" customModule="AVPlayerYoutubeDemo" customModuleProvider="target">
             <connections>
+                <outlet property="infoContainerView" destination="6Rr-jM-rmO" id="CAv-LV-uV5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewRectView" destination="cBt-VZ-9VN" id="83E-Tg-uqv"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
