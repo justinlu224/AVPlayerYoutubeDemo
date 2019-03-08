@@ -113,6 +113,7 @@ class LikeYoutubeViewController: UIViewController {
             self.view.frame = CGRect(origin: CGPoint(x: newX, y: newY), size: CGSize(width: newWidth, height: newHeight))
            
             CATransaction.begin()
+            //設置動畫效果是否顯示
             CATransaction.setDisableActions(true)
             //讓影片在拖動畫面時會跟著畫面一起縮放
             playerLayer.frame = CGRect(origin: .zero, size: CGSize(width: newWidth, height: newWidth / 16*9))
