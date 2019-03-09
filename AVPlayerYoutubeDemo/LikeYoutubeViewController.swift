@@ -41,7 +41,7 @@ class LikeYoutubeViewController: UIViewController {
     
     var tap:UITapGestureRecognizer!
     var player:AVPlayer = AVPlayer()
-    var playerLayer:CALayer!
+    var playerLayer:AVPlayerLayer!
     
     
     override func viewDidLoad() {
@@ -63,7 +63,10 @@ class LikeYoutubeViewController: UIViewController {
         playerLayer.backgroundColor = UIColor.black.cgColor
         //將layer加入
         self.view.layer.addSublayer(playerLayer)
-      
+        
+        //監聽手機有沒有翻轉，即使已經設定只能直向使用
+        NotificationCenter.default.addObserver(self, selector: #selector(deviceOrientationDidChange(_ :)), name:UIDevice.orientationDidChangeNotification, object: nil)
+        
         
     }
     
@@ -71,6 +74,37 @@ class LikeYoutubeViewController: UIViewController {
         super.viewDidAppear(animated)
         playerLayer.frame = viewRectView.frame
         player.play()
+    }
+    
+    @objc
+    func deviceOrientationDidChange(_ notification:Notification){
+        //轉向時畫面放大
+        toMax()
+        switch UIDevice.current.orientation {
+        case .landscapeLeft:
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            //轉換角度，z軸為原地轉換角度
+            playerLayer.transform = CATransform3DMakeRotation(CGFloat.pi / 2, 0, 0, 1)
+            playerLayer.frame = UIScreen.main.bounds
+            CATransaction.commit()
+            break
+        case .landscapeRight:
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            playerLayer.transform = CATransform3DMakeRotation(CGFloat.pi / -2, 0, 0, 1)
+            playerLayer.frame = UIScreen.main.bounds
+            CATransaction.commit()
+            break
+        default:
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            playerLayer.transform = CATransform3DMakeRotation(0, 0, 0, 1)
+            playerLayer.frame = CGRect(origin: .zero, size: CGSize(width: origWidth, height: origWidth / 16*9))
+            CATransaction.commit()
+            break
+        }
+        
     }
     
     
@@ -111,6 +145,8 @@ class LikeYoutubeViewController: UIViewController {
             
             let newX = origWidth - newWidth
             self.view.frame = CGRect(origin: CGPoint(x: newX, y: newY), size: CGSize(width: newWidth, height: newHeight))
+            
+            infoContainerView.alpha = (newWidth - minWidth) / origWidth
            
             CATransaction.begin()
             //設置動畫效果是否顯示
@@ -127,7 +163,6 @@ class LikeYoutubeViewController: UIViewController {
             }else{
                 self.toMax()
             }
-            
             break
         default:
             break
@@ -154,6 +189,7 @@ class LikeYoutubeViewController: UIViewController {
         }
          playerLayer.frame = viewRectView.frame
         self.startOffSet = 0
+        
     }
 
 
