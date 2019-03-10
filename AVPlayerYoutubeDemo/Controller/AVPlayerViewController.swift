@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  AVPlayerViewController.swift
 //  AVPlayerYoutubeDemo
 //
 //  Created by Apple on 2019/3/7.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AVPlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,4 +22,6 @@ class ViewController: UIViewController {
     }
 
 }
+
+
 

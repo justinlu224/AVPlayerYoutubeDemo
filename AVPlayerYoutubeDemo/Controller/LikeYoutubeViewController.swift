@@ -75,6 +75,10 @@ class LikeYoutubeViewController: UIViewController {
         playerLayer.frame = viewRectView.frame
         player.play()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        player.pause()
+    }
     
     @objc
     func deviceOrientationDidChange(_ notification:Notification){
@@ -172,7 +176,7 @@ class LikeYoutubeViewController: UIViewController {
     func toMin(){
         tap.isEnabled = true
         let x = origWidth - minWidth
-        let y = origHeight - minHeight
+        let y = origHeight - minHeight-49
         
         UIView.animate(withDuration: 1) {
             self.view.frame = CGRect(x: x, y: y, width: self.minWidth, height: self.minHeight)
