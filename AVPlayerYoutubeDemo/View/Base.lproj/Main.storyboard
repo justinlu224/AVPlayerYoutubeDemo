@@ -33,24 +33,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrO-yu-9oR">
-                                <rect key="frame" x="166.5" y="323.5" width="42" height="20.5"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRM-SD-N6U" customClass="CategoryView" customModule="AVPlayerYoutubeDemo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="375" height="125"/>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrO-yu-9oR">
+                                <rect key="frame" x="166" y="153" width="42" height="20.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRM-SD-N6U" customClass="CategoryView" customModule="AVPlayerYoutubeDemo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="125"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N1K-7m-4or" customClass="NewsScrollView" customModule="AVPlayerYoutubeDemo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="181" width="375" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xIp-cN-QMM" id="lqg-OQ-shh"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="wRM-SD-N6U" firstAttribute="leading" secondItem="e8B-Vn-iWm" secondAttribute="leading" id="ABB-fO-aDP"/>
                             <constraint firstItem="wRM-SD-N6U" firstAttribute="trailing" secondItem="e8B-Vn-iWm" secondAttribute="trailing" id="Ogl-Tw-hL6"/>
-                            <constraint firstItem="PrO-yu-9oR" firstAttribute="centerY" secondItem="Bou-xh-Fnc" secondAttribute="centerY" id="ULH-1N-heC"/>
                             <constraint firstItem="e8B-Vn-iWm" firstAttribute="bottom" secondItem="wRM-SD-N6U" secondAttribute="bottom" constant="473" id="Uma-Qf-4gT"/>
                             <constraint firstItem="wRM-SD-N6U" firstAttribute="top" secondItem="Bou-xh-Fnc" secondAttribute="top" constant="20" id="fPj-5I-pvc"/>
-                            <constraint firstItem="PrO-yu-9oR" firstAttribute="centerX" secondItem="Bou-xh-Fnc" secondAttribute="centerX" id="fWM-o3-ezk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e8B-Vn-iWm"/>
                     </view>
@@ -58,6 +64,7 @@
                     <connections>
                         <outlet property="categoryLabel" destination="PrO-yu-9oR" id="QXh-Sg-qkQ"/>
                         <outlet property="categoryView" destination="wRM-SD-N6U" id="83m-Ww-2wP"/>
+                        <outlet property="newsView" destination="N1K-7m-4or" id="kRB-iR-O3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2V-uX-Twt" userLabel="First Responder" sceneMemberID="firstResponder"/>

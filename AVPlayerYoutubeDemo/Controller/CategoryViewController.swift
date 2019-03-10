@@ -20,33 +20,41 @@ class CategoryViewController: UIViewController {
     let health = Category.init(id: 7, name: "健康")
     let sport = Category.init(id: 8, name: "運動")
     var calist:[Category]?
+    let imageView = ["1", "2", "3"]
+    var page = UIPageControl()
     @IBOutlet weak var categoryView: CategoryView!
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var newsView: NewsScrollView!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-//        let categoryList = [news,society,popular,entertainment,global,life,focus,health,sport]
+        newsView.creatMyScrollView(imageName: imageView, height: newsView.bounds.height)
         calist = [news,society,popular,entertainment,global,life,focus,health,sport]
         categoryView.add(target: self, categoryItems: calist!)
+        setPageControl()
     }
+    
+    func setPageControl(){
+        page.frame = CGRect(x: view.frame.width/3, y: (newsView.frame.origin.y + newsView.bounds.height) - 25, width: 100, height: 30)
+        //總共頁數
+        page.numberOfPages = imageView.count
+        //設定當前頁面顏色
+        page.currentPageIndicatorTintColor = UIColor.red
+        //非當前頁面顏色
+        page.pageIndicatorTintColor = UIColor.white
+        view.addSubview(page)
+    }
+    
     @objc func buttonAction(_ sender: UIButton){
         categoryLabel.text = calist![sender.tag].name
-//        categoryLabel.tintColor = UIColor.blue
         categoryLabel.textColor = UIColor.blue
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+extension CategoryViewController:UIScrollViewDelegate{
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("page = \(Int(newsView.contentOffset.x / view.frame.width))")
+        page.currentPage = Int(newsView.contentOffset.x / view.frame.width)
     }
-    */
-
 }
 
